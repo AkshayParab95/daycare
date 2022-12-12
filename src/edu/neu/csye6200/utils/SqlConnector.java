@@ -3,7 +3,7 @@ package edu.neu.csye6200.utils;
 import java.sql.*;
 
 /**
- * Initialize connection with mysql
+ * Initialize connection with MYSQL
  * Return single instance
  * 
  * @author Kaushik Gnansekar
@@ -25,11 +25,21 @@ public class SqlConnector {
 		return connection;
 	}
 
+	
+	/**
+	 * Get Instance
+	 * @return connection instance
+	 */
 	private static Connection getInstance() {
 		SqlConnector obj = new SqlConnector();
 		return obj.initConnection();
 	}
 
+	/**
+	 * Executes SQL query
+	 * @param query
+	 * @return data from DB
+	 */
 	public static ResultSet executeQuery(String query) {
 		Connection dbInstance = SqlConnector.getInstance();
 		ResultSet resultSet = null;
