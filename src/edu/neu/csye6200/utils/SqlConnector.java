@@ -52,5 +52,20 @@ public class SqlConnector {
 		}
 		return resultSet;
 	}
+	
+	/**
+	 * Executes SQL update
+	 * @param query
+	 */
+	public static void executeUpdate(String query) {
+		Connection dbInstance = SqlConnector.getInstance();
+		try {
+			Statement statement = dbInstance.createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

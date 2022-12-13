@@ -1,6 +1,6 @@
 package edu.neu.csye6200.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * @author Shivam Thabe
@@ -10,7 +10,7 @@ public abstract class Person {
 
 	public String firstName;
 	public String lastName;
-	public Date registerTime;
+	public LocalDate registerTime;
 	
 	/**
 	 * @return firstName
@@ -39,13 +39,13 @@ public abstract class Person {
 	/**
 	 * @return registerTime
 	 */
-	public Date getRegisterTime() {
+	public LocalDate getRegisterTime() {
 		return registerTime;
 	}
 	/**
 	 * @param registerTime
 	 */
-	public void setRegisterTime(Date registerTime) {
+	public void setRegisterTime(LocalDate registerTime) {
 		this.registerTime = registerTime;
 	}
 	
