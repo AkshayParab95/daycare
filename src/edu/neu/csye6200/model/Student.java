@@ -2,9 +2,13 @@ package edu.neu.csye6200.model;
 
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+
 import edu.neu.csye6200.utils.FileUtil;
 import edu.neu.csye6200.utils.RandomNumberUtil;
 import edu.neu.csye6200.utils.SqlConnector;
@@ -140,5 +144,33 @@ public class Student extends Person {
 					getStudentId() + "," + "'" + getFirstName() + "'" + "," + "'" + getLastName() +  "'" + "," + getAge() + "," + 
 					"'" + getRegisterTime() + "'" + "," + "'" + getFatherName() + "'" + "," + "'" + getMotherName() + "'" + ");");
 		}
+	}
+	
+	/**
+	 * Get all students from DB
+	 * @author Kaushik Gnanasekar
+	 * @return Vector<Student>
+	 */
+	public List<Student> getAllStudents() {
+		List<Student> studentRoster = new Vector<>();
+		ResultSet result = SqlConnector.executeQuery("SELECT * FROM students;");
+		try {
+			while (result.next()) {
+				LocalDate registerDate = LocalDate.parse(result.getString("register_time"));
+				studentRoster.add(new Student(result.getInt("student_id"), 
+						result.getString("first_name"),
+						result.getString("last_name"),
+						result.getInt("age"),
+						registerDate,
+						result.getString("father_name"),
+						result.getString("mother_name")
+						));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		studentRoster.forEach(System.out::println);
+		return studentRoster;
 	}
 }
