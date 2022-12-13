@@ -44,9 +44,23 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 	}
 
 	@Override
-	public List<Teacher> fetchDataFromDB(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Teacher fetchDataFromDB(String id) {
+		Teacher teacher = null;
+		ResultSet result = SqlConnector.executeQuery("SELECT * FROM teachers WHERE teacher_id=" + id + ";");
+		try {
+			while (result.next()) {
+				LocalDate registerDate = LocalDate.parse(result.getString("register_time"));
+				teacher = new Teacher(result.getInt("teacher_id"), 
+						result.getString("first_name"),
+						result.getString("last_name"),
+						registerDate
+						);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return teacher;
 	}
 
 	@Override

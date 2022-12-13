@@ -48,9 +48,25 @@ public class StudentDataController implements DatabaseManager<Student> {
 	}
 
 	@Override
-	public List<Student> fetchDataFromDB(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Student fetchDataFromDB(String id) {
+		Student student = null;
+		ResultSet result = SqlConnector.executeQuery("SELECT * FROM students WHERE student_id=" + id + ";");
+		try {
+			while (result.next()) {
+				LocalDate registerDate = LocalDate.parse(result.getString("register_time"));
+				student = new Student(result.getInt("student_id"),
+						result.getString("first_name"),
+						result.getString("last_name"),
+						result.getInt("age"),
+						registerDate,
+						result.getString("father_name"),
+						result.getString("mother_name"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return student;
 	}
 
 	@Override

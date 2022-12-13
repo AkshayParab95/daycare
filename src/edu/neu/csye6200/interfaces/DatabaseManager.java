@@ -12,7 +12,7 @@ public interface DatabaseManager<T> {
 	// Load into DB from CSV
 	public void loadFromCSV(String filename);
 	// Fetch data using primary key
-	public List<T> fetchDataFromDB(String id);
+	public T fetchDataFromDB(String id);
 	// Fetch all data
 	public List<T> fetchAllFromDB();
 }
