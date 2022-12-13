@@ -7,6 +7,11 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * File Util
+ * @author Kaushik Gnanasekar
+ *
+ */
 public class FileUtil {
 	
 	String inputFilename;

@@ -1,5 +1,5 @@
 package edu.neu.csye6200.model;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * @author Shivam Thabe
@@ -31,7 +31,7 @@ public class Teacher extends Person implements Comparable<Teacher> {
 	 * @param registerTime
 	 * @param stateLevel
 	 */
-	public Teacher(int teacherId, String firstName, String lastName, Date registerTime, int stateLevel) {
+	public Teacher(int teacherId, String firstName, String lastName, LocalDate registerTime, int stateLevel) {
 		super();
 		this.teacherId = teacherId;
 		this.firstName = firstName;

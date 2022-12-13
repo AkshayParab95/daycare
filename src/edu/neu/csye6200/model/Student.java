@@ -1,14 +1,20 @@
 package edu.neu.csye6200.model;
 
 
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import edu.neu.csye6200.utils.FileUtil;
+import edu.neu.csye6200.utils.RandomNumberUtil;
+import edu.neu.csye6200.utils.SqlConnector;
 
 
 /**
  * @author Shivam Thabe
  * Student Class inherited from Person Class
  */
-public class Student extends Person implements Comparable<Student>{
+public class Student extends Person {
 
 	private int studentId;
 	private int age;
@@ -27,7 +33,7 @@ public class Student extends Person implements Comparable<Student>{
 	 * @param fatherName
 	 * @param motherName
 	 */
-	public Student(int studentId, String firstName, String lastName, int age, Date registerTime, String fatherName, String motherName) {
+	public Student(int studentId, String firstName, String lastName, int age, LocalDate registerTime, String fatherName, String motherName) {
 		super();
 		this.studentId = studentId;
 		this.firstName = firstName;
@@ -107,12 +113,32 @@ public class Student extends Person implements Comparable<Student>{
 		System.out.println(registerTime.toString());
 		return studentId + "," + age + "," + fatherName + "," + motherName + "," + firstName + "," + lastName+ "\n";
 	}
-
+	
 	/**
-	 * Compare student IDs
+	 * Load students from CSV and write to DB
+	 * @author Kaushik Gnanasekar
+	 * @param filename
 	 */
-	@Override
-	public int compareTo(Student student) {
-		return Integer.valueOf(studentId).compareTo(student.studentId);
+	public void loadFromCSV(String filename) {
+		String file = filename != null ? filename : "students.txt";
+		List<String> fileList = new ArrayList<String>();
+		fileList = FileUtil.readFile(file);
+		for (String i : fileList) {
+			String[] stringArray = i.split(",");
+			int studentId = RandomNumberUtil.generate(10000, 99999);
+			setStudentId(studentId);
+			setFirstName(stringArray[0]);
+			setLastName(stringArray[1]);
+			setAge(Integer.parseInt(stringArray[2]));
+			
+			LocalDate registerDate = LocalDate.parse(stringArray[3]);
+			setRegisterTime(registerDate);
+			setFatherName(stringArray[4]);
+			setMotherName(stringArray[5]);
+			// Write to DB
+			SqlConnector.executeUpdate("INSERT INTO students VALUES (" + 
+					getStudentId() + "," + "'" + getFirstName() + "'" + "," + "'" + getLastName() +  "'" + "," + getAge() + "," + 
+					"'" + getRegisterTime() + "'" + "," + "'" + getFatherName() + "'" + "," + "'" + getMotherName() + "'" + ");");
+		}
 	}
 }
