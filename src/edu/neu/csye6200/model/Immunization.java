@@ -11,49 +11,49 @@ import java.util.Date;
 public class Immunization {
 
 	private int studentId;
-	private int immuId;
-	private String immuName;
+	private int immunizationId;
+	private String immunizationName;
 	private int duration;
-	private Date immuDate;
+	private Date immunizationDate;
 	public Immunization() {}
 	/**
-	 * @param immuId
-	 * @param immuName
+	 * @param immunizationId
+	 * @param immunizationName
 	 * @param duration
 	 */
-	public Immunization(int immuId, String immuName, int duration) {
+	public Immunization(int immunizationId, String immunizationName, int duration) {
 		super();
-		this.immuId = immuId;
-		this.immuName = immuName;
+		this.immunizationId = immunizationId;
+		this.immunizationName = immunizationName;
 		this.duration = duration;
 	}
 	//This constructor is only used for initializing
 	/**
 	 * @param studentId
-	 * @param immuId
-	 * @param immuName
+	 * @param immunizationId
+	 * @param immunizationName
 	 * @param duration
-	 * @param immuDate
+	 * @param immunizationDate
 	 */
-	public Immunization(int studentId, int immuId, String immuName, int duration, Date immuDate) {
+	public Immunization(int studentId, int immunizationId, String immunizationName, int duration, Date immunizationDate) {
 		super();
-		this.immuId = immuId;
+		this.immunizationId = immunizationId;
 		this.studentId = studentId;
-		this.immuName = immuName;
+		this.immunizationName = immunizationName;
 		this.duration = duration;
-		this.immuDate = immuDate;
+		this.immunizationDate = immunizationDate;
 	}
 	/**
-	 * @return immuId
+	 * @return immunizationId
 	 */
-	public int getImmuId() {
-		return immuId;
+	public int getImmunizationId() {
+		return immunizationId;
 	}
 	/**
-	 * @param immuId
+	 * @param immunizationId
 	 */
-	public void setImmuId(int immuId) {
-		this.immuId = immuId;
+	public void setImmunizationId(int immunizationId) {
+		this.immunizationId = immunizationId;
 	}
 	/**
 	 * @return studentId
@@ -68,28 +68,28 @@ public class Immunization {
 		this.studentId = studentId;
 	}
 	/**
-	 * @return immuDate
+	 * @return immunizationDate
 	 */
-	public Date getImmuDate() {
-		return immuDate;
+	public Date getImmunizationDate() {
+		return immunizationDate;
 	}
 	/**
-	 * @param immuDate
+	 * @param immunizationDate
 	 */
-	public void setImmuDate(Date immuDate) {
-		this.immuDate = immuDate;
+	public void setImmunizationDate(Date immunizationDate) {
+		this.immunizationDate = immunizationDate;
 	}
 	/**
-	 * @return immuName
+	 * @return immunizationName
 	 */
-	public String getImmuName() {
-		return immuName;
+	public String getImmunizationName() {
+		return immunizationName;
 	}
 	/**
-	 * @param immuName
+	 * @param immunizationName
 	 */
-	public void setImmuName(String immuName) {
-		this.immuName = immuName;
+	public void setImmunizationName(String immunizationName) {
+		this.immunizationName = immunizationName;
 	}
 	/**
 	 * @return duration
@@ -108,7 +108,7 @@ public class Immunization {
 	 */
 	@Override
 	public String toString() {
-		return studentId + "," + immuId + "," + immuName + "," + duration + "\n";
+		return studentId + "," + immunizationId + "," + immunizationName + "," + duration + "\n";
 	}
 	
 }
