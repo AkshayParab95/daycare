@@ -50,11 +50,11 @@ public class StudentDataController implements DatabaseManager<Student> {
 	@Override
 	public Student fetchDataFromDB(String id) {
 		Student student = null;
-		ResultSet result = SqlConnector.executeQuery("SELECT * FROM students WHERE student_id=" + id + ";");
+		ResultSet result = SqlConnector.executeQuery("SELECT * FROM students WHERE id=" + id + ";");
 		try {
 			while (result.next()) {
 				LocalDate registerDate = LocalDate.parse(result.getString("register_time"));
-				student = new Student(result.getInt("student_id"),
+				student = new Student(result.getInt("id"),
 						result.getString("first_name"),
 						result.getString("last_name"),
 						result.getInt("age"),
@@ -76,7 +76,7 @@ public class StudentDataController implements DatabaseManager<Student> {
 		try {
 			while (result.next()) {
 				LocalDate registerDate = LocalDate.parse(result.getString("register_time"));
-				studentRoster.add(new Student(result.getInt("student_id"),
+				studentRoster.add(new Student(result.getInt("id"),
 						result.getString("first_name"),
 						result.getString("last_name"),
 						result.getInt("age"),

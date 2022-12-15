@@ -46,7 +46,7 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 	@Override
 	public Teacher fetchDataFromDB(String id) {
 		Teacher teacher = null;
-		ResultSet result = SqlConnector.executeQuery("SELECT * FROM teachers WHERE teacher_id=" + id + ";");
+		ResultSet result = SqlConnector.executeQuery("SELECT * FROM teachers WHERE id=" + id + ";");
 		try {
 			while (result.next()) {
 				LocalDate registerDate = LocalDate.parse(result.getString("register_time"));
@@ -70,7 +70,7 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 		try {
 			while (result.next()) {
 				LocalDate registerDate = LocalDate.parse(result.getString("register_time"));
-				teacherRoster.add(new Teacher(result.getInt("teacher_id"), 
+				teacherRoster.add(new Teacher(result.getInt("id"), 
 						result.getString("first_name"),
 						result.getString("last_name"),
 						registerDate
