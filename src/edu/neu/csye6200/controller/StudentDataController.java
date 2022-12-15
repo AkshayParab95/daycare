@@ -90,6 +90,32 @@ public class StudentDataController implements DatabaseManager<Student> {
 		return studentRoster;
 	}
 	
+	
+	public List<Student> fetchStudentsFromClassroom(String id){
+		List<Student> studentRoster = new Vector<>();
+		ResultSet result = SqlConnector.executeQuery("SELECT * FROM students WHERE classroom_id=" + id + ";");
+		try {
+			while (result.next()) {
+				LocalDate registerDate = LocalDate.parse(result.getString("register_time"));
+				studentRoster.add(new Student(result.getInt("id"),
+						result.getString("first_name"),
+						result.getString("last_name"),
+						result.getInt("age"),
+						registerDate,
+						result.getString("father_name"),
+						result.getString("mother_name"),
+						result.getInt("classroom_id")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//studentRoster.forEach(System.out::println);
+		return studentRoster;
+		
+		
+	}
+	
 	public static int getStudentCountFromDB() {
 		ResultSet result = null;
 		try {

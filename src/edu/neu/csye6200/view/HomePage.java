@@ -31,6 +31,11 @@ public class HomePage extends JFrame {
 	private JButton btnAddStudent;
 	private JTable table;
 	private DefaultTableModel studentModel;
+	private JTable table_1;
+	private DefaultTableModel teacherModel;
+	private JTable table_2;
+	private JScrollPane scrollPane_2;
+	private DefaultTableModel classRoomModel;
 
 	/**
 	 * Launch the application.
@@ -53,7 +58,7 @@ public class HomePage extends JFrame {
 	 */
 	public HomePage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 952, 575);
+		setBounds(100, 100, 952, 746);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -176,7 +181,7 @@ public class HomePage extends JFrame {
 		contentPane.add(btnAddTeacher);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(38, 214, 447, 260);
+		scrollPane.setBounds(38, 214, 447, 177);
 		contentPane.add(scrollPane);
 		
 		
@@ -185,16 +190,44 @@ public class HomePage extends JFrame {
                 { "Anand Jha", "6014", "IT" }
             };
      
-        // Column Names
+        // Column Names for Student
         String[] columnNames = { "ID", "FirstName", "LastName", "Age", "MotherName", "FatherName" };		
         studentModel = new DefaultTableModel(columnNames, 0);
 		table = new JTable(studentModel);
 		table.setBounds(38, 214, 447, 260);
 		scrollPane.setViewportView(table);
 		
-		//studentModel.addRow(new Object[]{ "Kundan Kumar Jha", "4031", "CSE", "s", "a" });
-		//studentModel.addRow(new Object[]{ "Anand Jha", "6014", "IT", "s", "a" });
+		//Display teachers list
+        String[] teacherColumnNames = { "ID", "FirstName", "LastName" };		
+        teacherModel = new DefaultTableModel(teacherColumnNames, 0);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(583, 214, 337, 177);
+		contentPane.add(scrollPane_1);
 		
+		table_1 = new JTable(teacherModel);
+		scrollPane_1.setViewportView(table_1);
+		
+		
+		//display classrooms
+        String[] classroomColumnNames = { "ClassID", "Student", "Teacher" };		
+        classRoomModel = new DefaultTableModel(classroomColumnNames, 0);
+		scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(583, 467, 337, 189);
+		contentPane.add(scrollPane_2);
+		
+		table_2 = new JTable(classRoomModel);
+		scrollPane_2.setViewportView(table_2);
+		
+
+		
+	}
+	
+	public DefaultTableModel getClassRoomDisplayModel() {
+		return this.classRoomModel;
+	}
+	
+	public DefaultTableModel getTeacherDisplayModel() {
+		return this.teacherModel;
 	}
 	
 	public DefaultTableModel getStudentDisplayModel() {

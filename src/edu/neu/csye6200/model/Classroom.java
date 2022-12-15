@@ -11,6 +11,11 @@ public class Classroom {
 	private int teacherId;
 	private int maxAge;
 	
+	public Classroom(int id, int teacherId ) {
+		this.id = id;
+		this.teacherId = teacherId;
+	}
+	
 	public Classroom(int id, int currentCapacity, int totalCapacity, int teacherId, int maxAge) {
 		this.id = id;
 		this.currentCapacity = currentCapacity;

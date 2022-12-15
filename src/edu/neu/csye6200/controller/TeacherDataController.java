@@ -48,7 +48,7 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 		try {
 			while (result.next()) {
 				LocalDate registerDate = LocalDate.parse(result.getString("register_time"));
-				teacher = new Teacher(result.getInt("teacher_id"), 
+				teacher = new Teacher(result.getInt("id"), 
 						result.getString("first_name"),
 						result.getString("last_name"),
 						registerDate,
