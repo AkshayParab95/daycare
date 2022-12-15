@@ -1,5 +1,6 @@
 package edu.neu.csye6200.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -14,7 +15,8 @@ public class Immunization {
 	private int immunizationId;
 	private String immunizationName;
 	private int duration;
-	private Date immunizationDate;
+	private LocalDate immunizationDate;
+	private int immunizationRuleId;
 	public Immunization() {}
 	/**
 	 * @param immunizationId
@@ -35,7 +37,7 @@ public class Immunization {
 	 * @param duration
 	 * @param immunizationDate
 	 */
-	public Immunization(int studentId, int immunizationId, String immunizationName, int duration, Date immunizationDate) {
+	public Immunization(int studentId, int immunizationId, String immunizationName, int duration, LocalDate immunizationDate, int immunizationRuleId) {
 		super();
 		this.immunizationId = immunizationId;
 		this.studentId = studentId;
@@ -70,13 +72,13 @@ public class Immunization {
 	/**
 	 * @return immunizationDate
 	 */
-	public Date getImmunizationDate() {
+	public LocalDate getImmunizationDate() {
 		return immunizationDate;
 	}
 	/**
 	 * @param immunizationDate
 	 */
-	public void setImmunizationDate(Date immunizationDate) {
+	public void setImmunizationDate(LocalDate immunizationDate) {
 		this.immunizationDate = immunizationDate;
 	}
 	/**
@@ -103,13 +105,23 @@ public class Immunization {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	public int getImmunizationRuleId() {
+		return immunizationRuleId;
+	}
+	public void setImmunizationRuleId(int immunizationRuleId) {
+		this.immunizationRuleId = immunizationRuleId;
+	}
 	/**
 	 * toString()
 	 */
 	@Override
 	public String toString() {
-		return studentId + "," + immunizationId + "," + immunizationName + "," + duration + "\n";
+		return "Immunization [getImmunizationId()=" + getImmunizationId() + ", getStudentId()=" + getStudentId()
+				+ ", getImmunizationDate()=" + getImmunizationDate() + ", getImmunizationName()="
+				+ getImmunizationName() + ", getDuration()=" + getDuration() + ", getImmunizationRuleId()="
+				+ getImmunizationRuleId() + "]";
 	}
+	
 	
 }
 
