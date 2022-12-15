@@ -10,13 +10,6 @@ public class Teacher extends Person implements Comparable<Teacher> {
 
 	private int teacherId;
 	private int classRoomId;
-	public int getClassRoomId() {
-		return classRoomId;
-	}
-
-	public void setClassRoomId(int classRoomId) {
-		this.classRoomId = classRoomId;
-	}
 
 	public Teacher() {};
 	
@@ -59,6 +52,17 @@ public class Teacher extends Person implements Comparable<Teacher> {
 	 */
 	public void setTeacherId(int teacherId) {
 		this.teacherId = teacherId;
+	}
+	
+	/**
+	 * @param classRoomId
+	 */
+	public int getClassRoomId() {
+		return classRoomId;
+	}
+
+	public void setClassRoomId(int classRoomId) {
+		this.classRoomId = classRoomId;
 	}
 	
 	/**

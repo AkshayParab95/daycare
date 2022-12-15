@@ -12,7 +12,7 @@ public class Student extends Person {
 	private int age;
 	private String fatherName;
 	private String motherName;
-
+	private int classRoomId;
 
 	public Student() {}
 	//This constructor should only be used for initialization
@@ -25,7 +25,7 @@ public class Student extends Person {
 	 * @param fatherName
 	 * @param motherName
 	 */
-	public Student(int studentId, String firstName, String lastName, int age, LocalDate registerTime, String fatherName, String motherName) {
+	public Student(int studentId, String firstName, String lastName, int age, LocalDate registerTime, String fatherName, String motherName, int classRoomId) {
 		super();
 		this.studentId = studentId;
 		this.firstName = firstName;
@@ -34,6 +34,7 @@ public class Student extends Person {
 		this.registerTime = registerTime;
 		this.fatherName = fatherName;
 		this.motherName = motherName;
+		this.classRoomId = classRoomId;
 	}
 	//This is the basic constructor when creating a Student Object
 	/**
@@ -96,7 +97,15 @@ public class Student extends Person {
 	public void setMotherName(String motherName) {
 		this.motherName = motherName;
 	}
-
+	/**
+	 * @param classroomId
+	 */
+	public int getClassRoomId() {
+		return classRoomId;
+	}
+	public void setClassRoomId(int classRoomId) {
+		this.classRoomId = classRoomId;
+	}
 	/**
 	 *
 	 */

@@ -10,7 +10,6 @@ import java.util.Vector;
 import edu.neu.csye6200.interfaces.DatabaseManager;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.utils.FileUtil;
-import edu.neu.csye6200.utils.RandomNumberUtil;
 import edu.neu.csye6200.utils.SqlConnector;
 
 /**
@@ -28,8 +27,6 @@ public class StudentDataController implements DatabaseManager<Student> {
 		fileList = FileUtil.readFile(file);
 		for (String i : fileList) {
 			String[] stringArray = i.split(",");
-			int studentId = RandomNumberUtil.generate(10000, 99999);
-			studentObj.setStudentId(studentId);
 			studentObj.setFirstName(stringArray[0]);
 			studentObj.setLastName(stringArray[1]);
 			studentObj.setAge(Integer.parseInt(stringArray[2]));
@@ -39,11 +36,10 @@ public class StudentDataController implements DatabaseManager<Student> {
 			studentObj.setFatherName(stringArray[4]);
 			studentObj.setMotherName(stringArray[5]);
 			// Write to DB
-			SqlConnector.executeUpdate("INSERT INTO students VALUES (" +
-					studentObj.getStudentId() + "," + "'" + studentObj.getFirstName() + "'" + "," + "'"
+			SqlConnector.executeUpdate("INSERT INTO students (first_name, last_name, age, register_time, father_name, mother_name, classroom_id) VALUES (" + "'" + studentObj.getFirstName() + "'" + "," + "'"
 					+ studentObj.getLastName() + "'" + "," + studentObj.getAge() + "," +
 					"'" + studentObj.getRegisterTime() + "'" + "," + "'" + studentObj.getFatherName() + "'" + "," + "'"
-					+ studentObj.getMotherName() + "'" + ");");
+					+ studentObj.getMotherName() + "', NULL" + ");");
 		}
 	}
 
@@ -60,7 +56,8 @@ public class StudentDataController implements DatabaseManager<Student> {
 						result.getInt("age"),
 						registerDate,
 						result.getString("father_name"),
-						result.getString("mother_name"));
+						result.getString("mother_name"),
+						result.getInt("classroom_id"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -82,7 +79,8 @@ public class StudentDataController implements DatabaseManager<Student> {
 						result.getInt("age"),
 						registerDate,
 						result.getString("father_name"),
-						result.getString("mother_name")));
+						result.getString("mother_name"),
+						result.getInt("classroom_id")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
