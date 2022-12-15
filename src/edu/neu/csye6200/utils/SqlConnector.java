@@ -57,7 +57,7 @@ public class SqlConnector {
 	 * Executes SQL update
 	 * @param query
 	 */
-	public static long executeUpdate(String query) {
+	public static long executeInsert(String query) {
 		Connection dbInstance = SqlConnector.getInstance();
 		long id = 0;
 		try {
@@ -75,6 +75,17 @@ public class SqlConnector {
 			e.printStackTrace();
 		}
 		return id;
+	}
+	
+	public static void executeUpdate(String query) {
+		Connection dbInstance = SqlConnector.getInstance();
+		try {
+			Statement statement = dbInstance.createStatement();
+			statement.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

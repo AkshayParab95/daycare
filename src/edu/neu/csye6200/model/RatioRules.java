@@ -1,27 +1,24 @@
 package edu.neu.csye6200.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import edu.neu.csye6200.utils.*;
-
 public class RatioRules {
 
-	private Integer maxGroupsPerClassroom;
-    private Integer maxStudentsPerTeacher;
+	private Integer groupSize;
+    private Integer maxGroups;
     private Integer minAge;
     private Integer maxAge;
     
-	public Integer getMaxGroupsPerClassroom() {
-		return maxGroupsPerClassroom;
+	
+	public Integer getGroupSize() {
+		return groupSize;
 	}
-	public void setMaxGroupsPerClassroom(Integer maxGroupsPerClassroom) {
-		this.maxGroupsPerClassroom = maxGroupsPerClassroom;
+	public void setGroupSize(Integer groupSize) {
+		this.groupSize = groupSize;
 	}
-	public Integer getMaxStudentsPerTeacher() {
-		return maxStudentsPerTeacher;
+	public Integer getMaxGroups() {
+		return maxGroups;
 	}
-	public void setMaxStudentsPerTeacher(Integer maxStudentsPerTeacher) {
-		this.maxStudentsPerTeacher = maxStudentsPerTeacher;
+	public void setMaxGroups(Integer maxGroups) {
+		this.maxGroups = maxGroups;
 	}
 	public Integer getMinAge() {
 		return minAge;
@@ -35,25 +32,4 @@ public class RatioRules {
 	public void setMaxAge(Integer maxAge) {
 		this.maxAge = maxAge;
 	}
-    
-	/**
-	 * Load from CSV and write to DB
-	 * @param filename
-	 */
-	public void loadFromCSV(String filename) {
-		String file = filename != null ? filename : "ratiorules.txt";
-		List<String> fileList = new ArrayList<String>();
-		fileList = FileUtil.readFile(file);
-		for (String i : fileList) {
-			String[] stringArray = i.split(",");
-			setMinAge(Integer.parseInt(stringArray[0]));
-			setMaxAge(Integer.parseInt(stringArray[1]));
-			setMaxStudentsPerTeacher(Integer.parseInt(stringArray[2]));
-			setMaxGroupsPerClassroom(Integer.parseInt(stringArray[3]));
-			SqlConnector.executeUpdate("INSERT INTO ratiorules VALUES (" + getMaxAge() + "," + getMinAge() + "," + getMaxGroupsPerClassroom() + "," + getMaxStudentsPerTeacher() + ");");
-			
-		}
-		
-	}
-    
 }

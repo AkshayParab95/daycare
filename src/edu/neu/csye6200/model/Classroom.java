@@ -3,7 +3,6 @@ package edu.neu.csye6200.model;
 import java.sql.*;
 import java.util.*;
 import edu.neu.csye6200.utils.SqlConnector;
-import edu.neu.csye6200.utils.RandomNumberUtil;
 
 public class Classroom {
 	private int id;
@@ -60,14 +59,19 @@ public class Classroom {
 		this.maxAge = maxAge;
 	}
 
-	public void assign(int studentId, int studentAge) throws Exception {
-		ResultSet ratioRuleResult = SqlConnector.executeQuery("SELECT * FROM ratiorules WHERE max_age >= "+studentAge+" AND min_age <= "+studentAge+";");
+	public static void assign(int studentId, int studentAge) throws Exception {
+		ResultSet ratioRuleResult = SqlConnector.executeQuery("SELECT * FROM ratiorules WHERE max_age >= "+studentAge+" AND min_age <= "+studentAge+" LIMIT 1;");
+		if (!ratioRuleResult.isBeforeFirst()) {
+			throw new SQLException("No ratiorule found for student with id " + studentId + " and age " + studentAge);
+		}
 		RatioRules ratioRule = new RatioRules();
 		try {
-			ratioRule.setMaxGroupsPerClassroom(ratioRuleResult.getInt("max_groups_classroom"));
-			ratioRule.setMaxStudentsPerTeacher(ratioRuleResult.getInt("max_students_teacher"));
-			ratioRule.setMaxAge(ratioRuleResult.getInt("max_age"));
-			ratioRule.setMinAge(ratioRuleResult.getInt("min_age"));
+			while (ratioRuleResult.next()) {
+				ratioRule.setMaxGroups(ratioRuleResult.getInt("max_groups"));
+				ratioRule.setGroupSize(ratioRuleResult.getInt("group_size"));
+				ratioRule.setMaxAge(ratioRuleResult.getInt("max_age"));
+				ratioRule.setMinAge(ratioRuleResult.getInt("min_age"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -86,29 +90,43 @@ public class Classroom {
 			e.printStackTrace();
 		}
 		int studentAssigned = 0;
-		for(Classroom c: classRooms) {
+		long classRoomId = -1;
+		if(classRooms.size() != 0 ) {
+			for(Classroom c: classRooms) {
 				if(studentAssigned == 0 && (c.getCurrentCapacity() < c.getTotalCapacity())) {
-					SqlConnector.executeUpdate("UPDATE students SET classRoom_id = "+c.getId()+" WHERE id = "+studentId+";");
-					SqlConnector.executeUpdate("UPDATE classrooms SET current_capacity = "+(c.getCurrentCapacity()+1)+"WHERE id="+c.getId()+";");
+					classRoomId = c.getId();
+					SqlConnector.executeUpdate("UPDATE students SET classroom_id = "+classRoomId+" WHERE id = "+studentId+";");
+					String query = "UPDATE classrooms SET current_capacity = "+(c.getCurrentCapacity()+1)+" WHERE id = "+c.getId()+";";
+					SqlConnector.executeUpdate(query);
 					studentAssigned = 1;
 				}
 		}
+		}
 		if(studentAssigned == 0) {
-			if(ratioRule.getMaxGroupsPerClassroom() > classRooms.size()) {
-				int classRoomId = RandomNumberUtil.generate(0, 999999999);
-				ResultSet teacherResult = SqlConnector.executeQuery("SELECT * FROM teachers WHERE classAssigned = 0 LIMIT 1;");
-				try {
-					SqlConnector.executeUpdate("INSERT INTO classrooms (id, current_capacity, total_capacity, teacher_id, max_age) VALUES ("+classRoomId+","+1+","+ratioRule.getMaxStudentsPerTeacher()+","+teacherResult.getInt("id")+","+ratioRule.getMaxAge()+");");
-					SqlConnector.executeUpdate("UPDATE teachers SET class_assigned = 1 WHERE id = "+teacherResult.getInt("id")+";");
-					SqlConnector.executeUpdate("UPDATE students SET classroom_id = "+classRoomId+" WHERE id = "+studentId+";");
-				} catch (SQLException e) {	
-					e.printStackTrace();
+			if(ratioRule.getMaxGroups() > classRooms.size()) {
+				ResultSet teacherResult = SqlConnector.executeQuery("SELECT * FROM teachers WHERE classroom_id IS NULL LIMIT 1;");
+				if (!teacherResult.isBeforeFirst()) {
+					throw new SQLException("No teacher available at the moment");
+				}
+				while (teacherResult.next()) {
+					Teacher teacher = new Teacher();
+					try {
+						teacher.setTeacherId(teacherResult.getInt("id"));
+						classRoomId = SqlConnector.executeInsert("INSERT INTO classrooms (current_capacity, total_capacity, teacher_id, max_age) VALUES ("+1+","+ratioRule.getGroupSize()+","+teacher.getTeacherId()+","+ratioRule.getMaxAge()+");");
+						SqlConnector.executeUpdate("UPDATE teachers SET classroom_id = "+classRoomId+" WHERE id = "+teacher.getTeacherId()+";");
+						SqlConnector.executeUpdate("UPDATE students SET classroom_id = "+classRoomId+" WHERE id = "+studentId+";");
+						studentAssigned = 1;
+					} catch (SQLException e) {	
+						e.printStackTrace();
+					}
 				}
 			}
 			else {
-				throw new Exception("Failure detected during student assignment!");
+				throw new Exception("Failure detected during student assignment");
 			}
 		}
+		if (studentAssigned == 1 && classRoomId != -1) {
+			System.out.println("Student with id: "+studentId+" has been assigned to classroom: "+classRoomId);
+		}
 	}
-	
 }
