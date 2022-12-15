@@ -3,6 +3,8 @@ package edu.neu.csye6200.controller;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -80,6 +82,30 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 		}
 		teacherRoster.forEach(System.out::println);
 		return teacherRoster;
+	}
+	
+	public static void createTeacherFromUI(String firstName, String lastName) {
+		Teacher teacherObj = new Teacher();
+
+		teacherObj.setFirstName(firstName);
+		teacherObj.setLastName(lastName);
+		
+		   //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+		   LocalDate registerDate = LocalDate.now();  
+		   //System.out.println(dtf.format(now));  
+		
+		
+		teacherObj.setRegisterTime(registerDate);
+		System.out.println("INSERT INTO teachers VALUES (" + 
+				teacherObj.getTeacherId() + "," + "'" + teacherObj.getFirstName() + "'" + "," + "'" + teacherObj.getLastName() +  "'" +  "," + 
+				"'" + teacherObj.getRegisterTime() + "'" + ");");
+		// Write to DB
+		SqlConnector.executeUpdate("INSERT INTO teachers (first_name, last_name, classroom_id, register_time) VALUES (" + "'" + teacherObj.getFirstName() + "'" + "," + "'" + teacherObj.getLastName() +  "'" +  ", NULL," + 
+				"'" + teacherObj.getRegisterTime() + "'" + ");");		
+		
+		
+
+		
 	}
 
 }

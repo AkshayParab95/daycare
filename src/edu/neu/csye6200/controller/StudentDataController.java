@@ -89,5 +89,37 @@ public class StudentDataController implements DatabaseManager<Student> {
 		studentRoster.forEach(System.out::println);
 		return studentRoster;
 	}
+	
+	public static int getStudentCountFromDB() {
+		ResultSet result = null;
+		try {
+			result = SqlConnector.executeQuery("SELECT COUNT(*) FROM daycare.students");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int count =  ((Number) result).intValue();
+		return count;
+	}
+	
+	public static void createStudentFromUI(String firstName, String lastName, String motherName, String fatherName, String studentAge) {
+		Student studentObj = new Student();
+		
+		studentObj.setFirstName(firstName);
+		studentObj.setLastName(lastName);
+		studentObj.setAge(Integer.parseInt(studentAge));
+		
+		LocalDate registerDate = LocalDate.now(); 
+		studentObj.setRegisterTime(registerDate);
+		studentObj.setFatherName(fatherName);
+		studentObj.setMotherName(motherName);
+		
+		// Write to DB
+		// Write to DB
+		SqlConnector.executeUpdate("INSERT INTO students (first_name, last_name, age, register_time, father_name, mother_name, classroom_id) VALUES (" + "'" + studentObj.getFirstName() + "'" + "," + "'"
+				+ studentObj.getLastName() + "'" + "," + studentObj.getAge() + "," +
+				"'" + studentObj.getRegisterTime() + "'" + "," + "'" + studentObj.getFatherName() + "'" + "," + "'"
+				+ studentObj.getMotherName() + "', NULL" + ");");
+	}
 
 }

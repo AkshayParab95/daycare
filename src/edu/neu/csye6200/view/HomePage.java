@@ -6,9 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class HomePage extends JFrame {
 	
@@ -24,6 +28,9 @@ public class HomePage extends JFrame {
 	private JTextField teacherStateTxtField;
 	private JTextField teacherIdTxtField;
 	private JButton btnAddTeacher;
+	private JButton btnAddStudent;
+	private JTable table;
+	private DefaultTableModel studentModel;
 
 	/**
 	 * Launch the application.
@@ -120,7 +127,7 @@ public class HomePage extends JFrame {
 		motherNameTxtField.setBounds(354, 93, 130, 26);
 		contentPane.add(motherNameTxtField);
 		
-		JButton btnAddStudent = new JButton("Add Student");
+		btnAddStudent = new JButton("Add Student");
 		btnAddStudent.setBounds(191, 131, 117, 29);
 		contentPane.add(btnAddStudent);
 		
@@ -168,9 +175,55 @@ public class HomePage extends JFrame {
 		btnAddTeacher.setBounds(641, 131, 117, 29);
 		contentPane.add(btnAddTeacher);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(38, 214, 447, 260);
+		contentPane.add(scrollPane);
+		
+		
+        String[][] data = {
+                { "Kundan Kumar Jha", "4031", "CSE" },
+                { "Anand Jha", "6014", "IT" }
+            };
+     
+        // Column Names
+        String[] columnNames = { "ID", "FirstName", "LastName", "Age", "MotherName", "FatherName" };		
+        studentModel = new DefaultTableModel(columnNames, 0);
+		table = new JTable(studentModel);
+		table.setBounds(38, 214, 447, 260);
+		scrollPane.setViewportView(table);
+		
+		//studentModel.addRow(new Object[]{ "Kundan Kumar Jha", "4031", "CSE", "s", "a" });
+		//studentModel.addRow(new Object[]{ "Anand Jha", "6014", "IT", "s", "a" });
 		
 	}
 	
+	public DefaultTableModel getStudentDisplayModel() {
+		return this.studentModel;
+	}
+	
+	public JButton getBtnAddStudent() {
+		return this.btnAddStudent;
+	}
+	
+	public JTextField getStudentFirstNameTxtField() {
+		return studentFirstNameTxtField;
+	}
+	
+	public JTextField getStudentLastNameTxtField() {
+		return studentLastNameTxtField;
+	}
+	
+	public JTextField getFatherNameTxtField() {
+		return fatherNameTxtField;
+	}
+	
+	public JTextField getMotherNameTxtField() {
+		return motherNameTxtField;
+	}
+	
+	public JTextField getStudentAgeTxtField() {
+		return studentAgeTxtField;
+	}
 	
 	public JButton getBtnAddTeacher() {
 		return this.btnAddTeacher;
@@ -187,5 +240,8 @@ public class HomePage extends JFrame {
 	public JTextField setTeacherFirstNameTxtField(JTextField teacherLastNameTxtField) {
 		return teacherLastNameTxtField;
 	}
-
+	
+	public void showPopupMessage(String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
 }
