@@ -10,7 +10,6 @@ import java.util.Vector;
 import edu.neu.csye6200.interfaces.DatabaseManager;
 import edu.neu.csye6200.model.Teacher;
 import edu.neu.csye6200.utils.FileUtil;
-import edu.neu.csye6200.utils.RandomNumberUtil;
 import edu.neu.csye6200.utils.SqlConnector;
 
 /**
@@ -28,16 +27,13 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 		fileList = FileUtil.readFile(file);
 		for (String i : fileList) {
 			String[] stringArray = i.split(",");
-			int teacherId = RandomNumberUtil.generate(10000, 99999);
-			teacherObj.setTeacherId(teacherId);
 			teacherObj.setFirstName(stringArray[0]);
 			teacherObj.setLastName(stringArray[1]);
 
 			LocalDate registerDate = LocalDate.parse(stringArray[2]);
 			teacherObj.setRegisterTime(registerDate);
 			// Write to DB
-			SqlConnector.executeUpdate("INSERT INTO teachers VALUES (" + 
-					teacherObj.getTeacherId() + "," + "'" + teacherObj.getFirstName() + "'" + "," + "'" + teacherObj.getLastName() +  "'" +  "," + 
+			SqlConnector.executeUpdate("INSERT INTO teachers (first_name, last_name, classroom_id, register_time) VALUES (" + "'" + teacherObj.getFirstName() + "'" + "," + "'" + teacherObj.getLastName() +  "'" +  ", NULL," + 
 					"'" + teacherObj.getRegisterTime() + "'" + ");");
 		}
 		
@@ -53,7 +49,8 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 				teacher = new Teacher(result.getInt("teacher_id"), 
 						result.getString("first_name"),
 						result.getString("last_name"),
-						registerDate
+						registerDate,
+						result.getInt("classroom_id")
 						);
 			}
 		} catch (SQLException e) {
@@ -73,7 +70,8 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 				teacherRoster.add(new Teacher(result.getInt("id"), 
 						result.getString("first_name"),
 						result.getString("last_name"),
-						registerDate
+						registerDate,
+						result.getInt("classroom_id")
 						));
 			}
 		} catch (SQLException e) {

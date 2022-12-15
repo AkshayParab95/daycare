@@ -1,14 +1,6 @@
 package edu.neu.csye6200.model;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
 
-import edu.neu.csye6200.utils.FileUtil;
-import edu.neu.csye6200.utils.RandomNumberUtil;
-import edu.neu.csye6200.utils.SqlConnector;
+import java.time.LocalDate;
 
 /**
  * @author Shivam Thabe
@@ -17,6 +9,15 @@ import edu.neu.csye6200.utils.SqlConnector;
 public class Teacher extends Person implements Comparable<Teacher> {
 
 	private int teacherId;
+	private int classRoomId;
+	public int getClassRoomId() {
+		return classRoomId;
+	}
+
+	public void setClassRoomId(int classRoomId) {
+		this.classRoomId = classRoomId;
+	}
+
 	public Teacher() {};
 	
 	/**
@@ -37,12 +38,13 @@ public class Teacher extends Person implements Comparable<Teacher> {
 	 * @param lastName
 	 * @param registerTime
 	 */
-	public Teacher(int teacherId, String firstName, String lastName, LocalDate registerTime) {
+	public Teacher(int teacherId, String firstName, String lastName, LocalDate registerTime, int classRoomId) {
 		super();
 		this.teacherId = teacherId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.registerTime = registerTime;
+		this.classRoomId = classRoomId;
 	}
 	
 	/**

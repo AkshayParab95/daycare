@@ -1,18 +1,6 @@
 package edu.neu.csye6200.model;
 
-
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-
-import edu.neu.csye6200.utils.FileUtil;
-import edu.neu.csye6200.utils.RandomNumberUtil;
-import edu.neu.csye6200.utils.SqlConnector;
-
 
 /**
  * @author Shivam Thabe

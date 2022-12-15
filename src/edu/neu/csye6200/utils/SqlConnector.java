@@ -57,15 +57,24 @@ public class SqlConnector {
 	 * Executes SQL update
 	 * @param query
 	 */
-	public static void executeUpdate(String query) {
+	public static long executeUpdate(String query) {
 		Connection dbInstance = SqlConnector.getInstance();
+		long id = 0;
 		try {
 			Statement statement = dbInstance.createStatement();
-			statement.executeUpdate(query);
+			statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			ResultSet generatedKeys = statement.getGeneratedKeys();
+			if (generatedKeys.next()) {
+                id = generatedKeys.getLong(1);
+            }
+			else {
+				throw new SQLException("Insert query failed, no id obtained");
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return id;
 	}
 
 }
