@@ -12,18 +12,22 @@ import edu.neu.csye6200.model.Classroom;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.model.Teacher;
 import edu.neu.csye6200.utils.SqlConnector;
+import edu.neu.csye6200.view.ClassroomPage;
 import edu.neu.csye6200.view.HomePage;
 
+/**
+ * @author Shivam Thabe
+ */
 public class ViewClassRoomController {
 	
-	private HomePage homePage;
+	private ClassroomPage classroomPage;
 	
-	public ViewClassRoomController(HomePage homePage) {
-		this.homePage = homePage;
+	public ViewClassRoomController(ClassroomPage classroomPage) {
+		this.classroomPage = classroomPage;
 	}
 
 	public void initController() {
-		DefaultTableModel classRoomModel = homePage.getClassRoomDisplayModel();
+		DefaultTableModel classRoomModel = classroomPage.getClassRoomDisplayModel();
 		//StudentDataController sd = new StudentDataController();
 		List<Classroom> classList = fetchAllFromDB();
 		for(Classroom c: classList) {

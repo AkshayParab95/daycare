@@ -1,5 +1,6 @@
 package edu.neu.csye6200.controller;
 import edu.neu.csye6200.view.HomePage;
+import edu.neu.csye6200.view.HomePageForm;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,25 +8,25 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class CreateTeacherController {
-	private HomePage homePage;
+	private HomePageForm homePageForm;
 	
-	public CreateTeacherController(HomePage homePage) {
-		this.homePage = homePage;
+	public CreateTeacherController(HomePageForm homePageForm) {
+		this.homePageForm = homePageForm;
 	}
 	
 	public void initController() {
-		homePage.getBtnAddTeacher().addActionListener(e->addTeacher());
+		homePageForm.getBtnAddTeacher().addActionListener(e->addTeacher());
 	}
 	
 	public void addTeacher() {
 		
-		System.out.println(homePage.getTeacherFirstNameTxtField().getText() +" "+ homePage.getTeacherLastNameTxtField().getText());
-		String firstName = homePage.getTeacherFirstNameTxtField().getText();
-		String lastName = homePage.getTeacherLastNameTxtField().getText();
+		System.out.println(homePageForm.getTeacherFirstNameTxtField().getText() +" "+ homePageForm.getTeacherLastNameTxtField().getText());
+		String firstName = homePageForm.getTeacherFirstNameTxtField().getText();
+		String lastName = homePageForm.getTeacherLastNameTxtField().getText();
 		
     	if(!(typeIsRight(firstName) && typeIsRight(lastName) ) ) {
     		
-    		homePage.showPopupMessage("Please enter valid name for the teacher");
+    		homePageForm.showPopupMessage("Please enter valid name for the teacher");
 
     	}else {
     		

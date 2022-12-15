@@ -15,6 +15,13 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+
+import edu.neu.csye6200.controller.CreateStudentController;
+import edu.neu.csye6200.controller.CreateTeacherController;
+import edu.neu.csye6200.controller.ViewClassRoomController;
+import edu.neu.csye6200.controller.ViewStudentController;
+import edu.neu.csye6200.controller.ViewTeacherController;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -24,6 +31,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
+/**
+ * @author Shivam Thabe
+ */
 public class LoginPage extends JFrame {
 
 	private Image img_logo = new ImageIcon(LoginPage.class.getResource("/edu/neu/csye6200/resources/daycare.png")).getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
@@ -71,8 +81,12 @@ public class LoginPage extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String passText = new String(((JPasswordField) pwdPassword).getPassword());
 				if(txtUsername.getText().equals("admin") && passText.equals("1234") ) {
-					HomePage homePage = new HomePage();
-					homePage.setVisible(true);
+					//HomePage homePage = new HomePage();
+					//homePage.setVisible(true);
+					
+					DashBoard dashBoard = new DashBoard();
+					dashBoard.setVisible(true);
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Wrong username/password. Please try again.");
 				}

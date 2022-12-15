@@ -7,17 +7,18 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.view.HomePage;
+import edu.neu.csye6200.view.StudentPage;
 
 public class ViewStudentController {
 	
-	private HomePage homePage;
+	private StudentPage studentPage;
 	
-	public ViewStudentController(HomePage homePage) {
-		this.homePage = homePage;
+	public ViewStudentController(StudentPage studentPage) {
+		this.studentPage = studentPage;
 	}
 
 	public void initController() {
-		DefaultTableModel studentModel = homePage.getStudentDisplayModel();
+		DefaultTableModel studentModel = studentPage.getStudentDisplayModel();
 		StudentDataController sd = new StudentDataController();
 		List<Student> studentList = sd.fetchAllFromDB();
 		for(Student s: studentList) {

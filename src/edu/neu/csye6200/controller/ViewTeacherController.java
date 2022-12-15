@@ -6,17 +6,18 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.neu.csye6200.model.Teacher;
 import edu.neu.csye6200.view.HomePage;
+import edu.neu.csye6200.view.TeacherPage;
 
 public class ViewTeacherController {
 
-	private HomePage homePage;
+	private TeacherPage teacherPage;
 	
-	public ViewTeacherController(HomePage homePage) {
-		this.homePage = homePage;
+	public ViewTeacherController(TeacherPage teacherPage) {
+		this.teacherPage = teacherPage;
 	}
 
 	public void initController() {
-		DefaultTableModel teacherModel = homePage.getTeacherDisplayModel();
+		DefaultTableModel teacherModel = teacherPage.getTeacherDisplayModel();
 		TeacherDataController td = new TeacherDataController();
 		List<Teacher> teacherList = td.fetchAllFromDB();
 		for(Teacher t: teacherList) {

@@ -25,22 +25,22 @@ public class Driver {
 
                 
                 
-                HomePage homePage = new HomePage();
-                homePage.setVisible(true);
-                CreateTeacherController c = new CreateTeacherController(homePage);
-                c.initController();
-                
-                CreateStudentController s = new CreateStudentController(homePage);
-                s.initController();
-                
-                ViewStudentController viewStudent = new ViewStudentController(homePage);
-                viewStudent.initController();
-                
-                ViewTeacherController viewTeacher = new ViewTeacherController(homePage);
-                viewTeacher.initController();
-                
-                ViewClassRoomController viewClass = new ViewClassRoomController(homePage);
-                viewClass.initController();
+//                HomePage homePage = new HomePage();
+//                homePage.setVisible(true);
+//                CreateTeacherController c = new CreateTeacherController(homePage);
+//                c.initController();
+//                
+//                CreateStudentController s = new CreateStudentController(homePage);
+//                s.initController();
+//                
+//                ViewStudentController viewStudent = new ViewStudentController(homePage);
+//                viewStudent.initController();
+//                
+//                ViewTeacherController viewTeacher = new ViewTeacherController(homePage);
+//                viewTeacher.initController();
+//                
+//                ViewClassRoomController viewClass = new ViewClassRoomController(homePage);
+//                viewClass.initController();
                 
                 
                 

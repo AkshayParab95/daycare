@@ -1,6 +1,7 @@
 package edu.neu.csye6200.controller;
 
 import edu.neu.csye6200.view.HomePage;
+import edu.neu.csye6200.view.HomePageForm;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,28 +9,28 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class CreateStudentController {
-	private HomePage homePage;
+	private HomePageForm homePageForm;
 	
-	public CreateStudentController(HomePage homePage) {
-		this.homePage = homePage;
+	public CreateStudentController(HomePageForm homePageForm) {
+		this.homePageForm = homePageForm;
 	}
 
 	public void initController() {
-		homePage.getBtnAddStudent().addActionListener(e->addStudent());
+		homePageForm.getBtnAddStudent().addActionListener(e->addStudent());
 	}
 	
 	public void addStudent() {
 		
-		System.out.println(homePage.getStudentFirstNameTxtField().getText() +" "+ homePage.getStudentLastNameTxtField().getText());
-		String firstName = homePage.getStudentFirstNameTxtField().getText();
-		String lastName = homePage.getStudentLastNameTxtField().getText();
-		String motherName = homePage.getMotherNameTxtField().getText();
-		String fatherName = homePage.getFatherNameTxtField().getText();
-		String studentAge = homePage.getStudentAgeTxtField().getText();
+		System.out.println(homePageForm.getStudentFirstNameTxtField().getText() +" "+ homePageForm.getStudentLastNameTxtField().getText());
+		String firstName = homePageForm.getStudentFirstNameTxtField().getText();
+		String lastName = homePageForm.getStudentLastNameTxtField().getText();
+		String motherName = homePageForm.getMotherNameTxtField().getText();
+		String fatherName = homePageForm.getFatherNameTxtField().getText();
+		String studentAge = homePageForm.getStudentAgeTxtField().getText();
 		
     	if(!(typeIsRight(firstName) && typeIsRight(lastName) && typeIsRight(motherName) && typeIsRight(fatherName) ) ) {
     		
-    		homePage.showPopupMessage("Please enter valid entries for Student");
+    		homePageForm.showPopupMessage("Please enter valid entries for Student");
 
     	}else {
     		
