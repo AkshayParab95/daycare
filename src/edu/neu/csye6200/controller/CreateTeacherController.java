@@ -1,5 +1,6 @@
 package edu.neu.csye6200.controller;
 import edu.neu.csye6200.utils.SqlConnector;
+import edu.neu.csye6200.view.DashBoard;
 import edu.neu.csye6200.view.HomePage;
 import edu.neu.csye6200.view.HomePageForm;
 
@@ -36,6 +37,8 @@ public class CreateTeacherController {
     	}else {
     		
     		TeacherDataController.createTeacherFromUI(firstName, lastName);
+    		homePageForm.getTeacherFirstNameTxtField().setText("");
+    		homePageForm.getTeacherLastNameTxtField().setText("");
     	}
 	
 	}
@@ -44,9 +47,17 @@ public class CreateTeacherController {
 		System.out.println();
 		
 		String id = homePageForm.getTeacherIDTxtField().getText();
-		String review = homePageForm.getTeacherReviewTxtField().getText();
+		if(!(typeIsRight(homePageForm.getTeacherReviewTxtField().getText()))) {
+			homePageForm.showPopupMessage("Please enter a valid review.");
+		} else {
+			String review = homePageForm.getTeacherReviewTxtField().getText();
+			TeacherDataController.addTeacherReview(id, review);
+			homePageForm.getTeacherIDTxtField().setText("");
+			homePageForm.getTeacherReviewTxtField().setText("");
+		}
+		
 
-		TeacherDataController.addTeacherReview(id, review);
+		
 		
 	}
 	

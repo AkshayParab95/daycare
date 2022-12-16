@@ -35,8 +35,14 @@ public class CreateStudentController {
     	}else {
     		
     		StudentDataController.createStudentFromUI(firstName, lastName, motherName, fatherName, studentAge);
+        	homePageForm.getStudentFirstNameTxtField().setText("");
+        	homePageForm.getStudentLastNameTxtField().setText("");
+        	homePageForm.getStudentAgeTxtField().setText("");
+        	homePageForm.getFatherNameTxtField().setText("");
+        	homePageForm.getMotherNameTxtField().setText("");    	
+    	
     	}
-	
+    		
 	}
 	
 	

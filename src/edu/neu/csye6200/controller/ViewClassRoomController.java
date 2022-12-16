@@ -28,6 +28,7 @@ public class ViewClassRoomController {
 
 	public void initController() {
 		DefaultTableModel classRoomModel = classroomPage.getClassRoomDisplayModel();
+		classRoomModel.setRowCount(0);
 		//StudentDataController sd = new StudentDataController();
 		List<Classroom> classList = fetchAllFromDB();
 		for(Classroom c: classList) {

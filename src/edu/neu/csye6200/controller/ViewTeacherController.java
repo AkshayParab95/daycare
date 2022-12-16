@@ -18,6 +18,7 @@ public class ViewTeacherController {
 
 	public void initController() {
 		DefaultTableModel teacherModel = teacherPage.getTeacherDisplayModel();
+		teacherModel.setRowCount(0);
 		TeacherDataController td = new TeacherDataController();
 		List<Teacher> teacherList = td.fetchAllFromDB();
 		for(Teacher t: teacherList) {

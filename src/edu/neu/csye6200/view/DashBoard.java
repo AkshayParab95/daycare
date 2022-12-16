@@ -44,6 +44,7 @@ public class DashBoard extends JFrame {
 	private TeacherPage teacherPage;
 	private ClassroomPage classroomPage;
 	private AlertPage alertPage;
+	//private ViewTeacherController viewTeacher;
 	
 	
 	
@@ -94,7 +95,7 @@ public class DashBoard extends JFrame {
 		
 		
 		teacherPage = new TeacherPage();
-        ViewTeacherController viewTeacher = new ViewTeacherController(teacherPage);
+		ViewTeacherController viewTeacher = new ViewTeacherController(teacherPage);
         viewTeacher.initController();
 		
 		
@@ -147,6 +148,7 @@ public class DashBoard extends JFrame {
 		panelStudents.addMouseListener(new PanelButtonMouseAdapter(panelStudents) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				viewStudent.initController();	
 				menuClicked(studentPage);
 			}
 		});
@@ -171,6 +173,7 @@ public class DashBoard extends JFrame {
 		panelTeachers.addMouseListener(new PanelButtonMouseAdapter(panelTeachers) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				viewTeacher.initController();
 				menuClicked(teacherPage);
 			}
 		});
@@ -195,6 +198,7 @@ public class DashBoard extends JFrame {
 		panelClassrooms.addMouseListener(new PanelButtonMouseAdapter(panelClassrooms) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				viewClass.initController();
 				menuClicked(classroomPage);
 			}
 		});
@@ -219,6 +223,7 @@ public class DashBoard extends JFrame {
 		panelAlerts.addMouseListener(new PanelButtonMouseAdapter(panelAlerts) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				viewAlerts.initController();
 				menuClicked(alertPage);
 			}
 		});
@@ -306,8 +311,7 @@ public class DashBoard extends JFrame {
 		
 		//homePageForm.setVisible(true);
 		menuClicked(homePageForm);
-	}
-	
+	}	
 	
 	public void menuClicked(JPanel panel) {
 		homePageForm.setVisible(false);

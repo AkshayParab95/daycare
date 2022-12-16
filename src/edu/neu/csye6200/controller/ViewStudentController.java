@@ -22,6 +22,7 @@ public class ViewStudentController {
 
 	public void initController() {
 		DefaultTableModel studentModel = studentPage.getStudentDisplayModel();
+		studentModel.setRowCount(0);
 		StudentDataController sd = new StudentDataController();
 		List<Student> studentList = sd.fetchAllFromDB();
 		for(Student s: studentList) {

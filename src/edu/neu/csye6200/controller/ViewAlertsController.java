@@ -19,7 +19,7 @@ public class ViewAlertsController {
 	
 	public void initController() {
 		DefaultTableModel alertDisplayModel = alertPage.getAlertDisplayModel();
-		
+		alertDisplayModel.setRowCount(0);
 		ImmunizationDataController iDC = new ImmunizationDataController();
 		
 		List<Object[]> alertsDataObj = new Vector<>();
