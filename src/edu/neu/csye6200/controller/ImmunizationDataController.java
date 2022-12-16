@@ -14,6 +14,11 @@ import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.utils.FileUtil;
 import edu.neu.csye6200.utils.SqlConnector;
 
+/**
+ * Immunization Data Controller
+ * @author kaushikgnanasekar
+ *
+ */
 public class ImmunizationDataController implements DatabaseManager<Immunization> {
 
 	@Override
@@ -76,6 +81,11 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 		return immunizationRoster;
 	}
 	
+	/**
+	 * Custom query
+	 * @param query
+	 * @return
+	 */
 	public List<Immunization> fetchCustomQuery(String query) {
 		List<Immunization> immunizationRoster = new Vector<>();
 		ResultSet result = SqlConnector.executeQuery(query);
@@ -98,6 +108,10 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 		return immunizationRoster;
 	}
 	
+	/**
+	 * Get all immunization alerts
+	 * @return
+	 */
 	public List<Object[]> getAllImmunizationAlerts() {
 		StudentDataController studentController = new StudentDataController();
 		List<Student> studentInRangeRoster;

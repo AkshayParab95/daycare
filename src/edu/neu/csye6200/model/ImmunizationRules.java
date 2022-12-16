@@ -1,5 +1,10 @@
 package edu.neu.csye6200.model;
 
+/**
+ * Immunization Rules
+ * @author Kaushik Gnanasekar
+ *
+ */
 public class ImmunizationRules {
 
 	public ImmunizationRules() {};
