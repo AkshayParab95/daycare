@@ -1,6 +1,7 @@
 package edu.neu.csye6200.controller;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -8,7 +9,9 @@ import javax.swing.table.DefaultTableModel;
 import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.view.HomePage;
 import edu.neu.csye6200.view.StudentPage;
-
+/**
+ * @author Shivam Thabe
+ */
 public class ViewStudentController {
 	
 	private StudentPage studentPage;

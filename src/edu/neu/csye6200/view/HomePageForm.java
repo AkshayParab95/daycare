@@ -24,6 +24,7 @@ public class HomePageForm extends JPanel {
 	private JTextField studentAgeTxtField;
 	private JButton btnAddTeacher;
 	private JButton btnAddStudent;
+	private JButton btnRateTeacher;
 
 	
 	
@@ -86,7 +87,7 @@ public class HomePageForm extends JPanel {
 		btnAddTeacher.setBounds(138, 351, 117, 29);
 		add(btnAddTeacher);
 		
-		JButton btnRateTeacher = new JButton("Rate Teacher");
+		btnRateTeacher = new JButton("Rate Teacher");
 		btnRateTeacher.setBounds(374, 351, 117, 29);
 		add(btnRateTeacher);
 		
@@ -185,6 +186,15 @@ public class HomePageForm extends JPanel {
 	
 	public JTextField getTeacherLastNameTxtField() {
 		return teacherLastNameTxtField;
+	}
+	public JTextField getTeacherIDTxtField() {
+		return teacherIDTxtField;
+	}
+	public JTextField getTeacherReviewTxtField() {
+		return teacherReviewTxtField;
+	}
+	public JButton getBtnRateTeacher() {
+		return btnRateTeacher;
 	}
 	public void showPopupMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);

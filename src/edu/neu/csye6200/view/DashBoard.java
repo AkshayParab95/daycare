@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 
 import edu.neu.csye6200.controller.CreateStudentController;
 import edu.neu.csye6200.controller.CreateTeacherController;
+import edu.neu.csye6200.controller.ViewAlertsController;
 import edu.neu.csye6200.controller.ViewClassRoomController;
 import edu.neu.csye6200.controller.ViewStudentController;
 import edu.neu.csye6200.controller.ViewTeacherController;
@@ -103,7 +104,8 @@ public class DashBoard extends JFrame {
 		
 		
 		alertPage = new AlertPage();
-		
+		ViewAlertsController viewAlerts = new ViewAlertsController(alertPage);
+		viewAlerts.initController();
 		
 		JPanel panelMenu = new JPanel();
 		panelMenu.setBackground(new Color(0, 128, 128));

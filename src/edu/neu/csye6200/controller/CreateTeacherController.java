@@ -1,4 +1,5 @@
 package edu.neu.csye6200.controller;
+import edu.neu.csye6200.utils.SqlConnector;
 import edu.neu.csye6200.view.HomePage;
 import edu.neu.csye6200.view.HomePageForm;
 
@@ -7,6 +8,9 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+/**
+ * @author Shivam Thabe
+ */
 public class CreateTeacherController {
 	private HomePageForm homePageForm;
 	
@@ -16,6 +20,7 @@ public class CreateTeacherController {
 	
 	public void initController() {
 		homePageForm.getBtnAddTeacher().addActionListener(e->addTeacher());
+		homePageForm.getBtnRateTeacher().addActionListener(e->addTeacherReview());
 	}
 	
 	public void addTeacher() {
@@ -33,6 +38,16 @@ public class CreateTeacherController {
     		TeacherDataController.createTeacherFromUI(firstName, lastName);
     	}
 	
+	}
+	
+	public void addTeacherReview() {
+		System.out.println();
+		
+		String id = homePageForm.getTeacherIDTxtField().getText();
+		String review = homePageForm.getTeacherReviewTxtField().getText();
+
+		TeacherDataController.addTeacherReview(id, review);
+		
 	}
 	
 	

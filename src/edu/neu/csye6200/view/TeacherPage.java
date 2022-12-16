@@ -28,14 +28,14 @@ public class TeacherPage extends JPanel {
 		add(lblNewLabel);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(90, 103, 337, 177);
+		scrollPane_1.setBounds(90, 103, 412, 177);
 		add(scrollPane_1);
 		
 		//table = new JTable((TableModel) null);
 		//scrollPane_1.setViewportView(table);
 		
 		//Display teachers list
-        String[] teacherColumnNames = { "ID", "FirstName", "LastName" };		
+        String[] teacherColumnNames = { "ID", "FirstName", "LastName" , "Review"};		
         teacherModel = new DefaultTableModel(teacherColumnNames, 0);
 		//JScrollPane scrollPane_1 = new JScrollPane();
 		//scrollPane_1.setBounds(583, 214, 337, 177);

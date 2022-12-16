@@ -52,7 +52,8 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 						result.getString("first_name"),
 						result.getString("last_name"),
 						registerDate,
-						result.getInt("classroom_id")
+						result.getInt("classroom_id"),
+						result.getString("review")
 						);
 			}
 		} catch (SQLException e) {
@@ -73,7 +74,8 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 						result.getString("first_name"),
 						result.getString("last_name"),
 						registerDate,
-						result.getInt("classroom_id")
+						result.getInt("classroom_id"),
+						result.getString("review")
 						));
 			}
 		} catch (SQLException e) {
@@ -103,9 +105,10 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 		SqlConnector.executeUpdate("INSERT INTO teachers (first_name, last_name, classroom_id, register_time) VALUES (" + "'" + teacherObj.getFirstName() + "'" + "," + "'" + teacherObj.getLastName() +  "'" +  ", NULL," + 
 				"'" + teacherObj.getRegisterTime() + "'" + ");");		
 		
-		
-
-		
+	}
+	
+	public static void addTeacherReview(String id, String review) {
+		SqlConnector.executeUpdate( "UPDATE teachers SET review =" + "'" + review + "'" +" WHERE id=" + id + ";");	
 	}
 
 }
