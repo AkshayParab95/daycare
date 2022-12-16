@@ -35,6 +35,7 @@ public class StudentDataController implements DatabaseManager<Student> {
 			studentObj.setRegisterTime(registerDate);
 			studentObj.setFatherName(stringArray[4]);
 			studentObj.setMotherName(stringArray[5]);
+			
 			// Write to DB
 			SqlConnector.executeUpdate("INSERT INTO students (first_name, last_name, age, register_time, father_name, mother_name, classroom_id) VALUES (" + "'" + studentObj.getFirstName() + "'" + "," + "'"
 					+ studentObj.getLastName() + "'" + "," + studentObj.getAge() + "," +
@@ -151,7 +152,7 @@ public class StudentDataController implements DatabaseManager<Student> {
 		return count;
 	}
 	
-	public static void createStudentFromUI(String firstName, String lastName, String motherName, String fatherName, String studentAge) {
+	public static long createStudentFromUI(String firstName, String lastName, String motherName, String fatherName, String studentAge) {
 		Student studentObj = new Student();
 		
 		studentObj.setFirstName(firstName);
@@ -165,10 +166,11 @@ public class StudentDataController implements DatabaseManager<Student> {
 		
 		// Write to DB
 		// Write to DB
-		SqlConnector.executeUpdate("INSERT INTO students (first_name, last_name, age, register_time, father_name, mother_name, classroom_id) VALUES (" + "'" + studentObj.getFirstName() + "'" + "," + "'"
+		long id = SqlConnector.executeInsert("INSERT INTO students (first_name, last_name, age, register_time, father_name, mother_name, classroom_id) VALUES (" + "'" + studentObj.getFirstName() + "'" + "," + "'"
 				+ studentObj.getLastName() + "'" + "," + studentObj.getAge() + "," +
 				"'" + studentObj.getRegisterTime() + "'" + "," + "'" + studentObj.getFatherName() + "'" + "," + "'"
 				+ studentObj.getMotherName() + "', NULL" + ");");
+		return id;
 	}
 
 }

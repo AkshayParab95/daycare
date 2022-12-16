@@ -60,7 +60,7 @@ public class Immunization {
 	/**
 	 * @return studentId
 	 */
-	public int getStudentId() {
+	public int getId() {
 		return studentId;
 	}
 	/**
@@ -116,7 +116,7 @@ public class Immunization {
 	 */
 	@Override
 	public String toString() {
-		return "Immunization [getImmunizationId()=" + getImmunizationId() + ", getStudentId()=" + getStudentId()
+		return "Immunization [getImmunizationId()=" + getImmunizationId() + ", getId()=" + getId()
 				+ ", getImmunizationDate()=" + getImmunizationDate() + ", getImmunizationName()="
 				+ getImmunizationName() + ", getDuration()=" + getDuration() + ", getImmunizationRuleId()="
 				+ getImmunizationRuleId() + "]";

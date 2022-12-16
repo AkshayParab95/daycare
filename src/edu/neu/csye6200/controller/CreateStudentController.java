@@ -1,6 +1,7 @@
 package edu.neu.csye6200.controller;
 
-import edu.neu.csye6200.view.HomePage;
+
+import edu.neu.csye6200.model.Classroom;
 import edu.neu.csye6200.view.HomePageForm;
 
 import java.util.regex.Matcher;
@@ -34,7 +35,16 @@ public class CreateStudentController {
 
     	}else {
     		
-    		StudentDataController.createStudentFromUI(firstName, lastName, motherName, fatherName, studentAge);
+    		long id = StudentDataController.createStudentFromUI(firstName, lastName, motherName, fatherName, studentAge);
+    		try {
+				Classroom.assign((int)id, Integer.parseInt(studentAge));
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
 	
 	}

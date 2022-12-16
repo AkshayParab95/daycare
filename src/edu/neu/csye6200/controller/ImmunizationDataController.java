@@ -115,7 +115,7 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 			studentInRangeRoster.forEach(System.out::println);
 			String studentIds = "";
 			for (Student x:  studentInRangeRoster) {
-				studentIds = studentIds + String.valueOf(x.getStudentId()) + ",";
+				studentIds = studentIds + String.valueOf(x.getId()) + ",";
 				
 			}
 			studentIds = studentIds.substring(0, studentIds.length() - 1);
@@ -129,23 +129,23 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 			// Vaccinated student list
 			for (Immunization item: vaccinatedList) {
 				for (Student st: studentInRangeRoster) {
-					if (st.getStudentId() == item.getStudentId()) {
+					if (st.getId() == item.getId()) {
 						vaccinatedStudents.add(st);
-						finalList.add(new Object[] {String.valueOf(st.getStudentId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Completed"});
-						System.out.println(String.valueOf(st.getStudentId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Completed");
+						finalList.add(new Object[] {String.valueOf(st.getId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Completed"});
+						System.out.println(String.valueOf(st.getId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Completed");
 					}
 				}
 			}
 			
 			// Unvaccinated students
 			for (Immunization item: vaccinatedList) {
-				studentInRangeRoster.removeIf(s -> s.getStudentId() == item.getStudentId());
+				studentInRangeRoster.removeIf(s -> s.getId() == item.getId());
 			}
 			
 			for (Immunization item: vaccinatedList) {
 				for (Student st: studentInRangeRoster) {
-					finalList.add(new Object[] {String.valueOf(st.getStudentId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Pending"});
-					System.out.println(String.valueOf(st.getStudentId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Pending");
+					finalList.add(new Object[] {String.valueOf(st.getId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Pending"});
+					System.out.println(String.valueOf(st.getId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Pending");
 				}
 			}
 			
