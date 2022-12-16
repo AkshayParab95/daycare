@@ -96,9 +96,9 @@ public class TeacherDataController implements DatabaseManager<Teacher> {
 		
 		
 		teacherObj.setRegisterTime(registerDate);
-		System.out.println("INSERT INTO teachers VALUES (" + 
-				teacherObj.getId() + "," + "'" + teacherObj.getFirstName() + "'" + "," + "'" + teacherObj.getLastName() +  "'" +  "," + 
-				"'" + teacherObj.getRegisterTime() + "'" + ");");
+		//System.out.println("INSERT INTO teachers VALUES (" + 
+		//		teacherObj.getId() + "," + "'" + teacherObj.getFirstName() + "'" + "," + "'" + teacherObj.getLastName() +  "'" +  "," + 
+		//		"'" + teacherObj.getRegisterTime() + "'" + ");");
 		// Write to DB
 		SqlConnector.executeUpdate("INSERT INTO teachers (first_name, last_name, classroom_id, register_time) VALUES (" + "'" + teacherObj.getFirstName() + "'" + "," + "'" + teacherObj.getLastName() +  "'" +  ", NULL," + 
 				"'" + teacherObj.getRegisterTime() + "'" + ");");		

@@ -22,7 +22,7 @@ public class CreateStudentController {
 	
 	public void addStudent() {
 		
-		System.out.println(homePageForm.getStudentFirstNameTxtField().getText() +" "+ homePageForm.getStudentLastNameTxtField().getText());
+		//System.out.println(homePageForm.getStudentFirstNameTxtField().getText() +" "+ homePageForm.getStudentLastNameTxtField().getText());
 		String firstName = homePageForm.getStudentFirstNameTxtField().getText();
 		String lastName = homePageForm.getStudentLastNameTxtField().getText();
 		String motherName = homePageForm.getMotherNameTxtField().getText();

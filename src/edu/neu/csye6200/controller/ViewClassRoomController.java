@@ -40,7 +40,7 @@ public class ViewClassRoomController {
 			if(teacherID != null) {
 				Teacher teacher = td.fetchDataFromDB( teacherID.toString() );
 				if(teacher != null) {
-					System.out.println("*************** " + teacher.getFirstName());
+					//System.out.println("*************** " + teacher.getFirstName());
 					String teacherFirstName = teacher.getFirstName();
 					String teacherLastName = teacher.getLastName();
 					

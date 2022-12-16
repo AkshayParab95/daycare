@@ -26,7 +26,7 @@ public class CreateTeacherController {
 	
 	public void addTeacher() {
 		
-		System.out.println(homePageForm.getTeacherFirstNameTxtField().getText() +" "+ homePageForm.getTeacherLastNameTxtField().getText());
+		//System.out.println(homePageForm.getTeacherFirstNameTxtField().getText() +" "+ homePageForm.getTeacherLastNameTxtField().getText());
 		String firstName = homePageForm.getTeacherFirstNameTxtField().getText();
 		String lastName = homePageForm.getTeacherLastNameTxtField().getText();
 		
@@ -44,7 +44,7 @@ public class CreateTeacherController {
 	}
 	
 	public void addTeacherReview() {
-		System.out.println();
+		//System.out.println();
 		
 		String id = homePageForm.getTeacherIDTxtField().getText();
 		String review = homePageForm.getTeacherReviewTxtField().getText();
