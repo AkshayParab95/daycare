@@ -145,8 +145,11 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 				for (Student st: studentInRangeRoster) {
 					if (st.getId() == item.getId()) {
 						vaccinatedStudents.add(st);
-						finalList.add(new Object[] {String.valueOf(st.getId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Completed"});
-						System.out.println(String.valueOf(st.getId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Completed");
+						LocalDate dueDate = item.getImmunizationDate().plusMonths(item.getDuration());
+						LocalDate membershipRenewal = st.getRegisterTime().plusMonths(12);
+						finalList.add(new Object[] {String.valueOf(st.getId()), st.getFirstName().toString(), 
+								item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Completed", 
+								dueDate, membershipRenewal});
 					}
 				}
 			}
@@ -158,8 +161,11 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 			
 			for (Immunization item: vaccinatedList) {
 				for (Student st: studentInRangeRoster) {
-					finalList.add(new Object[] {String.valueOf(st.getId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Pending"});
-					System.out.println(String.valueOf(st.getId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Pending");
+					LocalDate dueDate = item.getImmunizationDate().plusMonths(item.getDuration());
+					LocalDate membershipRenewal = st.getRegisterTime().plusMonths(12);
+					finalList.add(new Object[] {String.valueOf(st.getId()), st.getFirstName().toString(), 
+							item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Pending", 
+							dueDate, membershipRenewal});
 				}
 			}
 			
