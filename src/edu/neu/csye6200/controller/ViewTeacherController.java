@@ -22,7 +22,7 @@ public class ViewTeacherController {
 		TeacherDataController td = new TeacherDataController();
 		List<Teacher> teacherList = td.fetchAllFromDB();
 		for(Teacher t: teacherList) {
-			teacherModel.addRow(new Object[]{ t.getTeacherId(), t.getFirstName(), t.getLastName(), t.getReview() });
+			teacherModel.addRow(new Object[]{ t.getId(), t.getFirstName(), t.getLastName(), t.getReview() });
 		}
 				
 	}

@@ -8,13 +8,14 @@ import java.time.LocalDate;
  */
 public class Student extends Person {
 
-	private int studentId;
 	private int age;
 	private String fatherName;
 	private String motherName;
 	private int classRoomId;
 
-	public Student() {}
+	public Student() {
+		super();
+	}
 	//This constructor should only be used for initialization
 	/**
 	 * @param studentId
@@ -25,41 +26,12 @@ public class Student extends Person {
 	 * @param fatherName
 	 * @param motherName
 	 */
-	public Student(int studentId, String firstName, String lastName, int age, LocalDate registerTime, String fatherName, String motherName, int classRoomId) {
-		super();
-		this.studentId = studentId;
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public Student(int id, String firstName, String lastName, int age, LocalDate registerTime, String fatherName, String motherName, int classRoomId) {
+		super(id, firstName, lastName, registerTime);
 		this.age = age;
-		this.registerTime = registerTime;
 		this.fatherName = fatherName;
 		this.motherName = motherName;
 		this.classRoomId = classRoomId;
-	}
-	//This is the basic constructor when creating a Student Object
-	/**
-	 * @param firstName
-	 * @param lastName
-	 * @param age
-	 */
-	public Student(String firstName, String lastName, int age) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.age = age;
-	}
-
-	/**
-	 * @return studentId
-	 */
-	public int getStudentId() {
-		return studentId;
-	}
-	/**
-	 * @param studentId
-	 */
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
 	}
 	/**
 	 * @return age
@@ -105,13 +77,5 @@ public class Student extends Person {
 	}
 	public void setClassRoomId(int classRoomId) {
 		this.classRoomId = classRoomId;
-	}
-	/**
-	 *
-	 */
-	@Override
-	public String toString() {
-		System.out.println(registerTime.toString());
-		return studentId + "," + age + "," + fatherName + "," + motherName + "," + firstName + "," + lastName+ "\n";
 	}
 }

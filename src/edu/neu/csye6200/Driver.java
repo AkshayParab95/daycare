@@ -1,14 +1,5 @@
 package edu.neu.csye6200;
 
-import edu.neu.csye6200.controller.CreateStudentController;
-import edu.neu.csye6200.controller.CreateTeacherController;
-import edu.neu.csye6200.controller.ImmunizationDataController;
-import edu.neu.csye6200.controller.ImmunizationRulesDataController;
-import edu.neu.csye6200.controller.ViewClassRoomController;
-import edu.neu.csye6200.controller.ViewStudentController;
-import edu.neu.csye6200.controller.ViewTeacherController;
-import edu.neu.csye6200.model.Classroom;
-import edu.neu.csye6200.view.HomePage;
 import edu.neu.csye6200.view.LoginPage;
 
 /**

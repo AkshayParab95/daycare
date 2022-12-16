@@ -1,49 +1,27 @@
 package edu.neu.csye6200.utils;
 
-import java.sql.*;
+import java.sql.Connection;
 
 /**
- * Initialize connection with MYSQL
- * Return single instance
- * 
- * @author Kaushik Gnansekar
+ * Defining functions to execute sql queries using DBConnection Class 
+ * @author Akshay Parab
  *
  */
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class SqlConnector {
-
-	private Connection initConnection() {
-		Connection connection = null;
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/daycare?" +
-					"user=mysql&password=password");
-		} catch (SQLException ex) {
-			// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}
-		return connection;
-	}
-
 	
 	/**
-	 * Get Instance
-	 * @return connection instance
-	 */
-	private static Connection getInstance() {
-		SqlConnector obj = new SqlConnector();
-		return obj.initConnection();
-	}
-
-	/**
-	 * Executes SQL query
+	 * Executes SQL Query
 	 * @param query
-	 * @return data from DB
 	 */
 	public static ResultSet executeQuery(String query) {
-		Connection dbInstance = SqlConnector.getInstance();
 		ResultSet resultSet = null;
 		try {
+			Connection dbInstance = DBConnection.getInstance().getConnection();
 			Statement statement = dbInstance.createStatement();
 			resultSet = statement.executeQuery(query);
 		} catch (SQLException e) {
@@ -54,13 +32,14 @@ public class SqlConnector {
 	}
 	
 	/**
-	 * Executes SQL update
+	 * Executes SQL Insert
 	 * @param query
+	 * returns id of inserted row
 	 */
 	public static long executeInsert(String query) {
-		Connection dbInstance = SqlConnector.getInstance();
 		long id = 0;
 		try {
+			Connection dbInstance = DBConnection.getInstance().getConnection();
 			Statement statement = dbInstance.createStatement();
 			statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 			ResultSet generatedKeys = statement.getGeneratedKeys();
@@ -77,9 +56,13 @@ public class SqlConnector {
 		return id;
 	}
 	
+	/**
+	 * Executes SQL Update
+	 * @param query
+	 */
 	public static void executeUpdate(String query) {
-		Connection dbInstance = SqlConnector.getInstance();
 		try {
+			Connection dbInstance = DBConnection.getInstance().getConnection();
 			Statement statement = dbInstance.createStatement();
 			statement.executeUpdate(query);
 		} catch (SQLException e) {
@@ -87,5 +70,4 @@ public class SqlConnector {
 			e.printStackTrace();
 		}
 	}
-
 }

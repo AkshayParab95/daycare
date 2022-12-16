@@ -13,6 +13,11 @@ import edu.neu.csye6200.model.ImmunizationRules;
 import edu.neu.csye6200.utils.FileUtil;
 import edu.neu.csye6200.utils.SqlConnector;
 
+/**
+ * Immunization Rules Data Controller
+ * @author Kaushik Gnanasekar
+ *
+ */
 public class ImmunizationRulesDataController implements DatabaseManager<ImmunizationRules> {
 
 	@Override

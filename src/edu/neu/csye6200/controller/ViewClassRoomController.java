@@ -63,7 +63,7 @@ public class ViewClassRoomController {
 			
 			
 			
-			//classRoomModel.addRow(new Object[]{ s.getStudentId(), s.getFirstName(), s.getLastName(), s.getAge(), s.getMotherName(), s.getFatherName() });
+			//classRoomModel.addRow(new Object[]{ s.getId(), s.getFirstName(), s.getLastName(), s.getAge(), s.getMotherName(), s.getFatherName() });
 		}
 				
 	}

@@ -114,11 +114,11 @@ public class Classroom {
 					throw new SQLException("No teacher available at the moment");
 				}
 				while (teacherResult.next()) {
-					Teacher teacher = new Teacher();
+					Person teacher = new Teacher();
 					try {
-						teacher.setTeacherId(teacherResult.getInt("id"));
-						classRoomId = SqlConnector.executeInsert("INSERT INTO classrooms (current_capacity, total_capacity, teacher_id, max_age) VALUES ("+1+","+ratioRule.getGroupSize()+","+teacher.getTeacherId()+","+ratioRule.getMaxAge()+");");
-						SqlConnector.executeUpdate("UPDATE teachers SET classroom_id = "+classRoomId+" WHERE id = "+teacher.getTeacherId()+";");
+						teacher.setId(teacherResult.getInt("id"));
+						classRoomId = SqlConnector.executeInsert("INSERT INTO classrooms (current_capacity, total_capacity, teacher_id, max_age) VALUES ("+1+","+ratioRule.getGroupSize()+","+teacher.getId()+","+ratioRule.getMaxAge()+");");
+						SqlConnector.executeUpdate("UPDATE teachers SET classroom_id = "+classRoomId+" WHERE id = "+teacher.getId()+";");
 						SqlConnector.executeUpdate("UPDATE students SET classroom_id = "+classRoomId+" WHERE id = "+studentId+";");
 						studentAssigned = 1;
 					} catch (SQLException e) {	
@@ -127,7 +127,7 @@ public class Classroom {
 				}
 			}
 			else {
-				throw new Exception("Failure detected during student assignment");
+				throw new Exception("All classrooms are full for students between age "+ratioRule.getMinAge()+" and "+ratioRule.getMaxAge()+". Cannot accomodate student with id: "+studentId);
 			}
 		}
 		if (studentAssigned == 1 && classRoomId != -1) {

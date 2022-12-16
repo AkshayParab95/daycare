@@ -47,17 +47,10 @@ public class CreateTeacherController {
 		System.out.println();
 		
 		String id = homePageForm.getTeacherIDTxtField().getText();
-		if(!(typeIsRight(homePageForm.getTeacherReviewTxtField().getText()))) {
-			homePageForm.showPopupMessage("Please enter a valid review.");
-		} else {
-			String review = homePageForm.getTeacherReviewTxtField().getText();
-			TeacherDataController.addTeacherReview(id, review);
-			homePageForm.getTeacherIDTxtField().setText("");
-			homePageForm.getTeacherReviewTxtField().setText("");
-		}
-		
-
-		
+		String review = homePageForm.getTeacherReviewTxtField().getText();
+		TeacherDataController.addTeacherReview(id, review);
+		homePageForm.getTeacherIDTxtField().setText("");
+		homePageForm.getTeacherReviewTxtField().setText("");
 		
 	}
 	

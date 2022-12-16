@@ -3,58 +3,28 @@ package edu.neu.csye6200.model;
 import java.time.LocalDate;
 
 /**
- * @author Shivam Thabe
+ * @author Akshay Parab
  * Teacher Class inherited from Person Class
  */
-public class Teacher extends Person implements Comparable<Teacher> {
+public class Teacher extends Person {
 
-	private int teacherId;
 	private int classRoomId;
 	private String review;
-
-	public Teacher() {};
 	
-	/**
-	 * @param teacherId
-	 * @param firstName
-	 * @param lastName
-	 */
-	public Teacher(int teacherId, String firstName, String lastName, String review) {
+	public Teacher() {
 		super();
-		this.teacherId = teacherId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.review = review;
 	}
-	
 	/**
 	 * @param teacherId
 	 * @param firstName
 	 * @param lastName
 	 * @param registerTime
+	 * @param review
 	 */
-	public Teacher(int teacherId, String firstName, String lastName, LocalDate registerTime, int classRoomId, String review) {
-		super();
-		this.teacherId = teacherId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.registerTime = registerTime;
+	public Teacher(int id, String firstName, String lastName, LocalDate registerTime, int classRoomId, String review) {
+		super(id, firstName, lastName, registerTime);
 		this.classRoomId = classRoomId;
 		this.review = review;
-	}
-	
-	/**
-	 * @return teacherId
-	 */
-	public int getTeacherId() {
-		return teacherId;
-	}
-	
-	/**
-	 * @param teacherId
-	 */
-	public void setTeacherId(int teacherId) {
-		this.teacherId = teacherId;
 	}
 	
 	/**
@@ -73,16 +43,9 @@ public class Teacher extends Person implements Comparable<Teacher> {
 	 */
 	@Override
 	public String toString() {
-		return teacherId + "," + firstName + "," + lastName + "\n";
+		return id + "," + firstName + "," + lastName + "\n";
 	}
 	
-	/**
-	 * Compare teacher IDs
-	 */
-	@Override
-	public int compareTo(Teacher teacher) {
-		return Integer.valueOf(teacherId).compareTo(teacher.teacherId);
-	}
 	public String getReview() {
 		return this.review;
 	}

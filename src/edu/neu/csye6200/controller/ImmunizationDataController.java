@@ -14,6 +14,11 @@ import edu.neu.csye6200.model.Student;
 import edu.neu.csye6200.utils.FileUtil;
 import edu.neu.csye6200.utils.SqlConnector;
 
+/**
+ * Immunization Data Controller
+ * @author kaushikgnanasekar
+ *
+ */
 public class ImmunizationDataController implements DatabaseManager<Immunization> {
 
 	@Override
@@ -76,6 +81,11 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 		return immunizationRoster;
 	}
 	
+	/**
+	 * Custom query
+	 * @param query
+	 * @return
+	 */
 	public List<Immunization> fetchCustomQuery(String query) {
 		List<Immunization> immunizationRoster = new Vector<>();
 		ResultSet result = SqlConnector.executeQuery(query);
@@ -98,6 +108,10 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 		return immunizationRoster;
 	}
 	
+	/**
+	 * Get all immunization alerts
+	 * @return
+	 */
 	public List<Object[]> getAllImmunizationAlerts() {
 		StudentDataController studentController = new StudentDataController();
 		List<Student> studentInRangeRoster;
@@ -115,7 +129,7 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 			studentInRangeRoster.forEach(System.out::println);
 			String studentIds = "";
 			for (Student x:  studentInRangeRoster) {
-				studentIds = studentIds + String.valueOf(x.getStudentId()) + ",";
+				studentIds = studentIds + String.valueOf(x.getId()) + ",";
 				
 			}
 			studentIds = studentIds.substring(0, studentIds.length() - 1);
@@ -129,23 +143,23 @@ public class ImmunizationDataController implements DatabaseManager<Immunization>
 			// Vaccinated student list
 			for (Immunization item: vaccinatedList) {
 				for (Student st: studentInRangeRoster) {
-					if (st.getStudentId() == item.getStudentId()) {
+					if (st.getId() == item.getId()) {
 						vaccinatedStudents.add(st);
-						finalList.add(new Object[] {String.valueOf(st.getStudentId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Completed"});
-						System.out.println(String.valueOf(st.getStudentId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Completed");
+						finalList.add(new Object[] {String.valueOf(st.getId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Completed"});
+						System.out.println(String.valueOf(st.getId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Completed");
 					}
 				}
 			}
 			
 			// Unvaccinated students
 			for (Immunization item: vaccinatedList) {
-				studentInRangeRoster.removeIf(s -> s.getStudentId() == item.getStudentId());
+				studentInRangeRoster.removeIf(s -> s.getId() == item.getId());
 			}
 			
 			for (Immunization item: vaccinatedList) {
 				for (Student st: studentInRangeRoster) {
-					finalList.add(new Object[] {String.valueOf(st.getStudentId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Pending"});
-					System.out.println(String.valueOf(st.getStudentId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Pending");
+					finalList.add(new Object[] {String.valueOf(st.getId()), st.getFirstName().toString(), item.getImmunizationName().toString(), item.getImmunizationDate().toString(), "Pending"});
+					System.out.println(String.valueOf(st.getId()) + st.getFirstName().toString() + item.getImmunizationName().toString() + item.getImmunizationDate().toString() + "Pending");
 				}
 			}
 			
