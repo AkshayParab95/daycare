@@ -80,6 +80,7 @@ public class DashBoard extends JFrame {
 		contentPane.setLayout(null);
 		
 		homePageForm = new HomePageForm();
+		homePageForm.setBackground(new Color(32, 178, 170));
         CreateTeacherController c = new CreateTeacherController(homePageForm);
         c.initController();
         
@@ -273,8 +274,25 @@ public class DashBoard extends JFrame {
 		panelSignout.add(lblIconSignout);
 		lblIconSignout.setIcon(new ImageIcon(img_signout));
 		
+		JPanel panelMainContent = new JPanel();
+		panelMainContent.setBounds(258, 6, 572, 438);
+		contentPane.add(panelMainContent);
+		panelMainContent.setLayout(null);
+		
+		
+		panelMainContent.add(homePageForm);
+		panelMainContent.add(studentPage);
+		panelMainContent.add(teacherPage);
+		panelMainContent.add(classroomPage);
+		panelMainContent.add(alertPage);
+		
+		//homePageForm.setVisible(true);
+		menuClicked(homePageForm);
+		
 		
 		JLabel lblx = new JLabel("x");
+		lblx.setBounds(547, -14, 36, 46);
+		homePageForm.add(lblx);
 		lblx.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -293,24 +311,7 @@ public class DashBoard extends JFrame {
 		});
 		lblx.setForeground(new Color(0, 0, 0));
 		lblx.setHorizontalAlignment(SwingConstants.CENTER);
-		lblx.setFont(new Font("Lucida Grande", Font.BOLD, 14));
-		lblx.setBounds(816, 0, 20, 20);
-		contentPane.add(lblx);
-		
-		JPanel panelMainContent = new JPanel();
-		panelMainContent.setBounds(258, 6, 572, 438);
-		contentPane.add(panelMainContent);
-		panelMainContent.setLayout(null);
-		
-		
-		panelMainContent.add(homePageForm);
-		panelMainContent.add(studentPage);
-		panelMainContent.add(teacherPage);
-		panelMainContent.add(classroomPage);
-		panelMainContent.add(alertPage);
-		
-		//homePageForm.setVisible(true);
-		menuClicked(homePageForm);
+		lblx.setFont(new Font("Lucida Grande", Font.BOLD, 20));
 	}	
 	
 	public void menuClicked(JPanel panel) {
