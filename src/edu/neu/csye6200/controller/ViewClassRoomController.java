@@ -56,6 +56,7 @@ public class ViewClassRoomController {
 						teacherLastName = "";
 						
 					}
+					classRoomModel.addRow(new Object[]{ "", "", ""});
 				}
 			}
 

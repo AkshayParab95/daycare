@@ -31,7 +31,7 @@ public class ClassroomPage extends JPanel {
 		setLayout(null);
 		setVisible(true);
 		
-		JLabel lblNewLabel = new JLabel("ClassroomPage");
+		JLabel lblNewLabel = new JLabel("Classroom");
 		lblNewLabel.setForeground(new Color(255, 250, 250));
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
 		lblNewLabel.setBackground(new Color(255, 250, 250));

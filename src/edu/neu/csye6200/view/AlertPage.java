@@ -32,10 +32,10 @@ public class AlertPage extends JPanel {
 		setLayout(null);
 		setVisible(true);
 		
-		JLabel lblNewLabel = new JLabel("Alerts Page");
+		JLabel lblNewLabel = new JLabel("Alerts ");
 		lblNewLabel.setForeground(new Color(255, 250, 250));
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		lblNewLabel.setBounds(227, 28, 128, 30);
+		lblNewLabel.setBounds(247, 28, 128, 30);
 		add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
